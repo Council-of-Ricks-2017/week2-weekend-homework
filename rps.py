@@ -30,6 +30,7 @@ class Game:
 		pass
 
 	def results(self):
+		pass
 
 
 
