@@ -1,35 +1,29 @@
-class Player:
-	def __init__(self, name, wins=0):
-		self.name = name
+class Player: 
+	def __init__(self, name, wins):
+		self.name = name 
 		self.wins = wins
 
-
-class Guess:
+class Guess: 
 	def __init__(self, choice):
-		self.choice = choice
+		self.choice = choice 
 
 	def player_choice(self):
-		pass
+		print('Players choice is {}'.format(self.name, self.choice))
 
 
-class Game:
-	def __init__(self):
-		self.players = []
-		self.score
+class Game: 
+	def __init__(self): 
+		self.player = []
+		self.score 
 
-	def add_player(self):
-		name = input("Enter your name: ")
+	def add_player(self):		
 		player = Player(name)
 		self.players.append(player)
+		print(self.players)
 		return self.players
 
 	def rand_comp_choice(self):
-		pass
 
 	def compare(self):
-		pass
 
-	def results(self):
-
-
-
+	def results(self): 
