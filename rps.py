@@ -31,5 +31,7 @@ class Game:
 
 	def results(self):
 
+print("hello")
+
 
 
