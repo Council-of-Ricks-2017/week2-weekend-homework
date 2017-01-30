@@ -12,7 +12,7 @@ class Player:
 		self.name = input("Enter your name: ")
 		self.wins = wins
 		self.round_count = 0
-		self.choice = None
+		self.choice = []
 
 	def make_choice(self):
 		self.round_count += 1
@@ -27,7 +27,8 @@ class Player:
 			time.sleep(2)
 			self.make_choice()
 		else:
-			self.choice = player_choice
+			self.choice.append(player_choice)
+		return self.choice
 
 
 class Game:
@@ -86,6 +87,7 @@ class Game:
 				player.wins += 1
 			elif computer_choice == '3' and player.choice == '1':
 				player.wins += 1
+			return player.wins
 	
 	def score_board(self):	
 		for player in self.players:
