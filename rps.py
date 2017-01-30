@@ -1,21 +1,33 @@
 import random
+import os
+
+
+print("\n***********************************************")
+print("***********  Rock, Paper, Scissors  ***********")
+print("***********************************************\n")
+
 
 class Player:
 	def __init__(self, wins=0):
 		self.name = input("Enter your name: ")
 		self.wins = wins
+		self.round_count = 0
 		self.choice = None
 
 
-
 	def make_choice(self):
+		self.round_count += 1
+		os.system('clear')
+		print("\n***********************************************")
+		print("*******************  Round #{} *****************".format(self.round_count))
+		print("***********************************************\n")
+
 		player_choice = input("{}, choose [1] rock, [2] paper or [3] scissors: ".format(self.name))
 		if player_choice not in ['1', '2', '3']:
 			print ('Invalid choice - please choose again')
-			self.make_choice()
+			# self.make_choice()
 		else:
 			self.choice = player_choice
-
 
 
 class Game:
@@ -29,7 +41,7 @@ class Game:
 	def add_player(self):
 		player = Player(name)
 		self.players.append(Player())
-		more_players = input("Will there be more players? [y or n]")
+		more_players = input("Will there be more players? [y or n] ")
 		#need to validate yes or no
 		if more_players == "y":
 			self.add_player()
@@ -70,10 +82,10 @@ class Game:
 				return False
 
 	def results(self):
-		print ('{} Wins!!'.format(player.name))
+		print ('{} Wins!!'.format(player.name)) #This should move elsewhere because it doesn't work in round method
+		#create wins display (overall score) after each round , does it go here?
 
 
-#
 g = Game()
 #print (g.rand_comp_choice())
 #guess = Guess()
