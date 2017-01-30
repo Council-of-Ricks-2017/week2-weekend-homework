@@ -2,9 +2,11 @@ import random
 import os
 import time
 
-print("\n***********************************************")
-print("***********  Rock, Paper, Scissors  ***********")
-print("***********************************************\n")
+print ('''
+***********************************************
+***********  Rock, Paper, Scissors  ***********
+***********************************************
+''')
 
 
 class Player:
@@ -20,7 +22,7 @@ class Player:
 
 
 			print ('Invalid choice - please choose [1], [2], or [3]')
-			time.sleep(2)
+			time.sleep(1)
 			self.make_choice()
 		else:
 			self.choice = player_choice
@@ -30,7 +32,12 @@ class Game:
 	def __init__(self, target_score=2):
 		self.players = []
 		self.target_score = target_score
+<<<<<<< HEAD
 		self.winner = ["none"]
+=======
+		self.winner = None
+		self.winners = [] #list to store multiple winners, if more than one user hits the target_score
+>>>>>>> 96de2ec9700efef63b04c8446de0185b3a8b30da
 		self.round_count = 0
 		self.add_player()
 		self.round()
@@ -39,23 +46,19 @@ class Game:
 		# player = Player(name)
 		self.players.append(Player())
 		self.add_more_players()
-		#need to validate yes or no
-
 		return self.players
 
 	def add_more_players(self):
 		more_players = input("Will there be more players? [y or n] ")
 		print ("\n")
-		#need to validate yes or no
 		if more_players == "y":
 			self.add_player()
 		elif more_players == 'n':
 			pass
 		else:
 			print('Not a valid input. Please type "y" or "n" on next try.')
-			time.sleep(3)
+			time.sleep(2)
 			self.add_more_players()
-
 		return self.players
 
 	def round(self):
@@ -93,26 +96,17 @@ class Game:
 		print ("\n")
 		for player in self.players:
 			print("{} has {} wins".format(player.name, player.wins))
-			print("Round {} complete!!!".format(self.round_count))
-		time.sleep(3)
+		time.sleep(1)
 
 	def check_wins(self):
 		for player in self.players:
-			print(player)
-			#How to deal with multiple players scoring 5
 			if player.wins == self.target_score:
-				# print(player.name)
-				self.winner.append(player.name)
-				print(self.winner)
-				self.results()
-				# return True
-			else:
-				self.round()
-
+				self.winners.append(player.name)
+		return self.winners
 
 	def results(self):
-		print ('{} Wins!!'.format(self.winner)) #This should move elsewhere because it doesn't work in round method
-		#create wins display (overall score) after each round , does it go here?
+		for winner in self.winners:
+			print ('\n{} Wins!!'.format(winner))
 
 
 g = Game()
