@@ -32,12 +32,9 @@ class Game:
 	def __init__(self, target_score=2):
 		self.players = []
 		self.target_score = target_score
-<<<<<<< HEAD
-		self.winner = ["none"]
-=======
+
 		self.winner = None
 		self.winners = [] #list to store multiple winners, if more than one user hits the target_score
->>>>>>> 96de2ec9700efef63b04c8446de0185b3a8b30da
 		self.round_count = 0
 		self.add_player()
 		self.round()
