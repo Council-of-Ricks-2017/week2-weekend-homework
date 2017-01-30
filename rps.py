@@ -11,16 +11,10 @@ class Player:
 	def __init__(self, wins=0):
 		self.name = input("Enter your name: ")
 		self.wins = wins
-		self.round_count = 0
-		self.choice = []
+		self.choice = None
+
 
 	def make_choice(self):
-		self.round_count += 1
-		os.system('clear')
-		print("\n***********************************************")
-		print("*******************  Round #{} *****************".format(self.round_count))
-		print("***********************************************\n")
-
 		player_choice = input("{}, choose [1] rock, [2] paper or [3] scissors: ".format(self.name))
 		if player_choice not in ['1', '2', '3']:
 			print ('Invalid choice - please choose [1], [2], or [3]')
@@ -36,6 +30,7 @@ class Game:
 		self.players = []
 		self.target_score = target_score
 		self.winner = None
+		self.round_count = 0
 		self.add_player()
 		self.round()
 
@@ -48,6 +43,7 @@ class Game:
 
 	def add_more_players(self):
 		more_players = input("Will there be more players? [y or n] ")
+		print ("\n")
 		#need to validate yes or no
 		if more_players == "y":
 			self.add_player()
@@ -60,10 +56,13 @@ class Game:
 
 		return self.players
 
-
-
-
 	def round(self):
+		self.round_count += 1
+		os.system('clear')
+		print("\n***********************************************")
+		print("*******************  Round #{} *****************".format(self.round_count))
+		print("***********************************************\n")
+
 		for player in self.players:
 			player.make_choice()
 		self.compare()
@@ -87,14 +86,13 @@ class Game:
 				player.wins += 1
 			elif computer_choice == '3' and player.choice == '1':
 				player.wins += 1
-			return player.wins
-	
-	def score_board(self):	
+
+	def score_board(self):
+		print ("\n")
 		for player in self.players:
 			print("{} has {} wins".format(player.name, player.wins))
 		time.sleep(3)
 
-	
 	def check_wins(self):
 		for player in self.players:
 			#How to deal with multiple players scoring 5
