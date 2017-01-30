@@ -13,7 +13,6 @@ class Player:
 		self.wins = wins
 		self.choice = None
 
-
 	def make_choice(self):
 		player_choice = input("{}, choose [1] rock, [2] paper or [3] scissors: ".format(self.name))
 		if player_choice not in ['1', '2', '3']:
@@ -21,8 +20,7 @@ class Player:
 			time.sleep(2)
 			self.make_choice()
 		else:
-			self.choice.append(player_choice)
-		return self.choice
+			self.choice = player_choice
 
 
 class Game:
@@ -31,6 +29,7 @@ class Game:
 		self.target_score = target_score
 		self.winner = None
 		self.round_count = 0
+		self.wins = self.players.wins
 		self.add_player()
 		self.round()
 
@@ -96,11 +95,12 @@ class Game:
 	def check_wins(self):
 		for player in self.players:
 			#How to deal with multiple players scoring 5
-			if player.wins == self.target_score:
-				self.winner = player.name
-				return self.winner
-			else:
-				return False
+			for wins in player.wins:
+				if wins == self.target_score:
+					self.winner = player.name
+					return self.winner
+				else:
+					return False
 
 	def results(self):
 		print ('{} Wins!!'.format(self.winner)) 
@@ -112,6 +112,4 @@ g = Game()
 #print (guess.player_choice())
 # p = Player(self)
 # p.name
-
-
 
